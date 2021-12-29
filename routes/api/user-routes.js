@@ -3,6 +3,7 @@ const {
     getAllUsers,
     getUserById,
     createUser,
+    addFriend,
     updateUser,
     deleteUser,
     deleteFriend
@@ -19,6 +20,7 @@ router.route('/:id')
     .delete(deleteUser)
 
 router.route('/:userId/friends/:friendId')
+    .post(addFriend)
     .delete(deleteFriend)
 
 module.exports = router;
