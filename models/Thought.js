@@ -54,7 +54,7 @@ const ThoughtSchema = new Schema(
     },
 
     // use ThoughtSchema to validate data for a reply
-    reactions: [ReactionSchema]
+    reactions: [ReactionSchema],
   },
   {
     toJSON: {
@@ -65,12 +65,12 @@ const ThoughtSchema = new Schema(
   }
 )
 
-// get total count of friends
+// get total count of reactions
 ThoughtSchema.virtual('reactionCount').get(function () {
   return this.reactions.length;
 });
 
-// create the User model using the UserSchema
+// create the Thought model using the ThoughtSchema
 const Thought = model('Thought', ThoughtSchema);
 
 // export the User model
