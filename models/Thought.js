@@ -4,8 +4,8 @@ const dateFormat = require('../utils/dateFormat');
 
 const ReactionSchema = new Schema(
   {
-    // set custom id to avoid confusion with parent comment _id
-    replyId: {
+    // set custom id to avoid confusion with parent thought _id
+    reactionId: {
       type: Schema.Types.ObjectId,
       default: () => new Types.ObjectId()
     },
@@ -51,7 +51,8 @@ const ThoughtSchema = new Schema(
     username: {
       type: String,
       required: true
-      
+    },
+
     // use ThoughtSchema to validate data for a reply
     reactions: [ReactionSchema]
   },
@@ -62,13 +63,16 @@ const ThoughtSchema = new Schema(
     },
     id: false
   }
-);
+)
 
-//get total count of reactions
-ThoughtSchema.virtual('reactionCount').get(function() {
+// get total count of friends
+ThoughtSchema.virtual('reactionCount').get(function () {
   return this.reactions.length;
 });
 
+// create the User model using the UserSchema
 const Thought = model('Thought', ThoughtSchema);
 
+// export the User model
 module.exports = Thought;
+
